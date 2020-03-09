@@ -5,7 +5,7 @@
     <el-header>
       <div>
         <img src="../assets/heima.png" alt="">
-        <span>电商管理系统</span>
+        <span>管理系统</span>
       </div>
       <el-button type="info" @click="logout">退出</el-button>
     </el-header>
@@ -98,6 +98,7 @@
                     return this.$message.error("res.meta.msg");
                 }
                 this.menuList = res.data;
+                // console.log(this.menuList)
             },
             // getMenuList() {
             //     // const res = this.$http.get('menus');
