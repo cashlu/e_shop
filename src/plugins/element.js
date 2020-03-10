@@ -3,7 +3,7 @@ import {
     Button, Form, FormItem, Input, Message, Container, Header, Aside, Main,
     Menu, Submenu, MenuItem, Breadcrumb, BreadcrumbItem, Card, Row, Col,
     Table, TableColumn, Switch, Tooltip, Pagination, Dialog, MessageBox, Tag,
-    Tree, Select, Option
+    Tree, Select, Option, Cascader
 } from 'element-ui'
 
 
@@ -33,6 +33,7 @@ Vue.use(Tag)
 Vue.use(Tree)
 Vue.use(Select)
 Vue.use(Option)
+Vue.use(Cascader)
 
 //Message组件需要全局挂载
 // TODO：为什么要挂载在Vue的prototype上？为什么不能像其他组件一下使用？

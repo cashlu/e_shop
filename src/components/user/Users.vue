@@ -401,14 +401,11 @@
             // 修改用户数据页面的数据获取。
             async showEditDialog(id) {
                 this.editDialogVisible = true;
-                // console.log(id);
                 const {data: res} = await this.$http.get("users/" + id);
-                // console.log(res);
                 if (res.meta.status !== 200) {
                     return this.$message.error("获取数据失败");
                 }
                 this.editForm = res.data;
-                console.log(this.editForm);
             },
 
             // 实现方式2
@@ -482,12 +479,13 @@
 
             // 根据ID删除用户
             async removeUserById(id) {
-                const confirmResult = await this.$confirm('此操作将永久删除该用户, 是否继续?', '提示', {
-                    confirmButtonText: '确定',
-                    cancelButtonText: '取消',
-                    type: 'warning',
-                    closeOnClickModal: false,
-                }).catch(err => {
+                const confirmResult = await this.$confirm('此操作将永久删除该用户, 是否继续?',
+                    '提示', {
+                        confirmButtonText: '确定',
+                        cancelButtonText: '取消',
+                        type: 'warning',
+                        closeOnClickModal: false,
+                    }).catch(err => {
                     return err;
                 });
                 if (confirmResult !== "confirm") {
