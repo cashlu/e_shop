@@ -10,7 +10,12 @@ import './assets/fonts/iconfont.css'
 import axios from 'axios'
 // 导入vue-table-with-tree-grid
 import TreeTable from 'vue-table-with-tree-grid'
-
+// 导入vue-quill-editor
+import VueQuillEditor from 'vue-quill-editor'
+// 导入vue-quill-editor样式文件
+import 'quill/dist/quill.core.css' // import styles
+import 'quill/dist/quill.snow.css' // for snow theme
+import 'quill/dist/quill.bubble.css' // for bubble theme
 
 // 将Axios挂载在Vue的原型对象上。
 Vue.prototype.$http = axios;
@@ -25,16 +30,33 @@ axios.interceptors.request.use(config => {
     // console.log(config);
     // 在最后必须return config
     return config;
-})
+});
 
+// 定义一个全局的过滤器
+Vue.filter("dateFormat", function (originValue) {
+    const dt = new Date(originValue);
+    const year = dt.getFullYear();
+    // 如果月份不足两位，前面补充一个0
+    const month = (dt.getMonth() + 1 + "").padStart(2,"0");
+    // 还有一种写法
+    // const month = ("0" + dt.getMonth() + 1).slice(-2);
+    const day = (dt.getDate() + "").padStart(2, "0");
+    const hour = (dt.getHours() + "").padStart(2, "0");
+    const minute = (dt.getMinutes() + "").padStart(2, "0");
+    const second = (dt.getSeconds() + "").padStart(2, "0");
+    return `${year}-${month}-${day} ${hour}:${minute}:${second}`
+});
 
-Vue.config.productionTip = false
+Vue.config.productionTip = false;
 
 // 注册TreeTable为全局组件
-Vue.component('tree-table',TreeTable)
+Vue.component('tree-table', TreeTable);
+
+// 注册vue-quill-editor
+Vue.use(VueQuillEditor);
 
 
 new Vue({
     router,
     render: h => h(App)
-}).$mount('#app')
+}).$mount('#app');

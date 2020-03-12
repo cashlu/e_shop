@@ -8,6 +8,8 @@ import Right from "../components/power/Right";
 import Roles from "../components/power/Roles";
 import Cate from "../components/goods/Cate";
 import Params from "../components/goods/Params";
+import GoodList from "../components/goods/List";
+import Add from "../components/goods/Add";
 
 Vue.use(VueRouter)
 
@@ -22,12 +24,17 @@ const routes = [
         component: Home,
         redirect: '/welcome',
         children: [
+            // children中路由跳转的页面，全部是嵌套在Home组件中，因为Home组件
+            // 中有<router-view>标签来做占位符，所以这里的所有子路由的渲染，
+            // 都会替换这个<router-view>。
             {path: '/welcome', component: Welcome},
             {path: '/users', component: Users},
             {path: '/rights', component: Right},
             {path: '/roles', component: Roles},
             {path: '/categories', component: Cate},
             {path: '/params', component: Params},
+            {path: '/goods', component: GoodList},
+            {path: '/goods/add', component: Add},
         ]
     },
 ]
