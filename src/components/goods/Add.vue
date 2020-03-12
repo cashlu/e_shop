@@ -368,6 +368,7 @@
             },
         },
         created() {
+            console.log(this.$route.query);
             this.getCateList();
         },
     }

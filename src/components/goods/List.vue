@@ -73,13 +73,14 @@
                         <!-- 编辑按钮 -->
                         <el-button size="mini"
                                    type="primary"
-                                   icon="el-icon-edit">
+                                   icon="el-icon-edit"
+                                   @click="goAddPageWithParams(scope.row.goods_id)">
                         </el-button>
                         <!-- 删除按钮 -->
                         <el-button size="mini"
                                    type="danger"
                                    icon="el-icon-delete"
-                        @click="deleteGoodById(scope.row.goods_id)">
+                                   @click="deleteGoodById(scope.row.goods_id)">
                         </el-button>
                     </template>
                 </el-table-column>
@@ -113,6 +114,8 @@
                 goodsList: [],
                 // 总商品的数量
                 total: 0,
+                // 单一商品
+                good: {},
             }
         },
         methods: {
@@ -137,7 +140,7 @@
                 this.queryInfo.pagenum = page;
                 this.getGoodsList();
             },
-            async deleteGoodById(id){
+            async deleteGoodById(id) {
                 const confirmResult = await this.$confirm('此操作将永久删除该商品, 是否继续?',
                     '提示', {
                         confirmButtonText: '确定',
@@ -150,18 +153,36 @@
                 if (confirmResult !== "confirm") {
                     return this.$message.info("已取消删除")
                 }
-                const {data:res} = await this.$http.delete("goods/" + id);
-                if (res.meta.status !== 200){
+                const {data: res} = await this.$http.delete("goods/" + id);
+                if (res.meta.status !== 200) {
                     return this.$message.error("删除商品失败");
                 }
                 this.$message.success("删除商品成功");
                 this.getGoodsList();
             },
             // 跳转到添加商品的页面
-            goAddPage(){
+            goAddPage() {
                 // 跳转到指定的url
                 this.$router.push("/goods/add");
             },
+            // 根据id查询一个商品
+            // async getGoodById(id) {
+            //     console.log(id);
+            //     const {data: res} = await this.$http.get("goods/" + id);
+            //     if (res.meta.status !== 201) {
+            //         this.$message.error("获取商品失败");
+            //     }
+            //     this.good = res.data;
+            // },
+            //
+            // TODO: 跳转的时候可以传递参数，那么就同样适用添加商品的页面来修改商品信息，但是后端的接口貌似有问题，暂时无法实现。
+            // goAddPageWithParams(goods_id) {
+            //     let target = this.getGoodById(goods_id);
+            //     this.$router.push({
+            //         path: "/goods/add",
+            //         query: {obj: target},
+            //     })
+            // }
         },
 
         created() {
