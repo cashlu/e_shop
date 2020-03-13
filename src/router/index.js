@@ -11,8 +11,9 @@ import Params from "../components/goods/Params";
 import GoodList from "../components/goods/List";
 import Add from "../components/goods/Add";
 import Order from "../components/order/Order";
+import Report from "../components/report/Report";
 
-Vue.use(VueRouter)
+Vue.use(VueRouter);
 
 
 const routes = [
@@ -37,13 +38,14 @@ const routes = [
             {path: '/goods', component: GoodList},
             {path: '/goods/add', component: Add},
             {path: '/orders', component: Order},
+            {path: '/reports', component: Report},
         ]
     },
-]
+];
 
 const router = new VueRouter({
     routes
-})
+});
 
 // 在将路由export出去之前，先挂载一个路由导航守卫
 // 路由导航守卫的功能是，判断用户是否有token，如果没有，强制跳转到登录页面。
