@@ -12,7 +12,7 @@
         <el-card>
             <!-- 搜索与添加区 -->
             <!-- 这里使用了layout布局 -->
-            <el-row :gutter="20">
+            <el-row>
                 <el-col :span="10">
                     <el-input placeholder="请输入内容"
                               clearable
@@ -316,7 +316,7 @@
         },
         methods: {
             async getUserList() {
-                const {data: res} = await this.$http("users", {
+                const {data: res} = await this.$http.get("users", {
                     params: this.queryInfo,
                 });
                 // console.log(res);

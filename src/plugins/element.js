@@ -4,7 +4,7 @@ import {
     Menu, Submenu, MenuItem, Breadcrumb, BreadcrumbItem, Card, Row, Col,
     Table, TableColumn, Switch, Tooltip, Pagination, Dialog, MessageBox, Tag,
     Tree, Select, Option, Cascader,Alert, Tabs, TabPane,Steps, Step, Checkbox,
-    CheckboxGroup, Upload
+    CheckboxGroup, Upload, Timeline, TimelineItem
 } from 'element-ui'
 
 
@@ -43,6 +43,8 @@ Vue.use(Step)
 Vue.use(Checkbox)
 Vue.use(CheckboxGroup)
 Vue.use(Upload)
+Vue.use(Timeline)
+Vue.use(TimelineItem)
 
 //Message组件需要全局挂载
 // TODO：为什么要挂载在Vue的prototype上？为什么不能像其他组件一下使用？
